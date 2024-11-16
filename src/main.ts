@@ -5,7 +5,6 @@ import { addIcon, Plugin } from 'obsidian'
 import { ChooseTypeModal } from './modals/chooseType'
 import { SettingTab } from './modals/settingTab'
 import { univerIconSvg } from './utils/common'
-import { injectWasm } from './utils/wasm'
 import { Type as UDocType, UDocView } from './views/udoc'
 import { Type as USheetType, USheetView } from './views/usheet'
 import { Type as XlsxType, XlsxTypeView } from './views/xlsx'
@@ -16,7 +15,6 @@ export default class UniverPlugin extends Plugin {
   settings: UniverPluginSettings
   async onload() {
     await this.loadSettings()
-    await injectWasm()
 
     addIcon('univer', univerIconSvg)
 

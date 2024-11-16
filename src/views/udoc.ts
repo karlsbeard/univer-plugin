@@ -1,7 +1,7 @@
 import type { UniverPluginSettings } from '@/types/setting'
 import type { DocumentDataModel, IDocumentData, Univer } from '@univerjs/core'
 import type { WorkspaceLeaf } from 'obsidian'
-import { docInit } from '@/univer/docs'
+import { docInit } from '@/univer/docs/docs'
 import { IResourceLoaderService, Tools, UniverInstanceType } from '@univerjs/core'
 import { FUniver } from '@univerjs/facade'
 import { TextFileView } from 'obsidian'

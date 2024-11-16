@@ -1,4 +1,3 @@
-import { existsSync } from 'node:fs'
 import { copyFile, rename, writeFile } from 'node:fs/promises'
 import { builtinModules } from 'node:module'
 import { join, resolve } from 'node:path'
@@ -37,13 +36,6 @@ function generate(isDev?: boolean) {
   }
 }
 
-const exchangeWasm = resolve(__dirname, './node_modules/@univerjs-pro/exchange-wasm/package.json')
-
-if (!existsSync(exchangeWasm)) {
-  // eslint-disable-next-line no-console
-  console.log('exchange-wasm not found, using mock exchange-wasm')
-}
-
 export default defineConfig((_) => {
   const dev = process.argv.includes('--watch')
 
@@ -55,7 +47,6 @@ export default defineConfig((_) => {
     resolve: {
       alias: {
         '@': resolve(__dirname, './src'),
-        '@univerjs-pro/exchange-wasm': existsSync(exchangeWasm) ? resolve(__dirname, './node_modules/@univerjs-pro/exchange-wasm') : resolve(__dirname, './src/mock'),
       },
     },
     build: {

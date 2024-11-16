@@ -1,3 +1,4 @@
+import type { IWorkbookData } from '@univerjs/core'
 import { Type as DocType } from '@/views/udoc'
 import { Type as SheetType } from '@/views/usheet'
 import { Type as XlsxType } from '@/views/xlsx'
@@ -108,4 +109,20 @@ export async function downLoadExcel(excelBuffer: ArrayBuffer, fileName: string):
 
   window.URL.revokeObjectURL(url)
   document.body.removeChild(a)
+}
+
+export function fillDefaultSheetBlock(workbookData: IWorkbookData): IWorkbookData {
+  const sheets = workbookData.sheets
+
+  if (sheets) {
+    Object.keys(sheets).forEach((sheetId) => {
+      const sheet = sheets[sheetId]
+      if (sheet.columnCount)
+        sheet.columnCount = Math.max(36, sheet.columnCount)
+
+      if (sheet.rowCount)
+        sheet.rowCount = Math.max(99, sheet.rowCount)
+    })
+  }
+  return workbookData
 }
