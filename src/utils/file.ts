@@ -1,7 +1,6 @@
 import type { IWorkbookData } from '@univerjs/core'
 import { Type as DocType } from '@/views/udoc'
 import { Type as SheetType } from '@/views/usheet'
-import { Type as XlsxType } from '@/views/xlsx'
 import JSZip from 'jszip'
 import { type App, Notice } from 'obsidian'
 
@@ -72,8 +71,6 @@ function getFileType(suffix: string) {
   switch (suffix) {
     case 'udoc':
       return DocType
-    case 'xlsx':
-      return XlsxType
     default:
       return SheetType
   }

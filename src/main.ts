@@ -7,7 +7,6 @@ import { SettingTab } from './modals/settingTab'
 import { univerIconSvg } from './utils/common'
 import { Type as UDocType, UDocView } from './views/udoc'
 import { Type as USheetType, USheetView } from './views/usheet'
-import { Type as XlsxType, XlsxTypeView } from './views/xlsx'
 import './style/univer.css'
 
 export type ViewType = typeof USheetType | typeof UDocType
@@ -40,14 +39,6 @@ export default class UniverPlugin extends Plugin {
       },
     })
 
-    this.addCommand({
-      id: 'univer-xlsx',
-      name: 'Create Univer Xlsx',
-      callback: () => {
-        createNewFile(this.app, 'xlsx')
-      },
-    })
-
     // add the setting tab
     this.addSettingTab(new SettingTab(this.app, this))
     // register view
@@ -56,16 +47,12 @@ export default class UniverPlugin extends Plugin {
 
     this.registerView(UDocType, leaf => new UDocView(leaf, this.settings))
     this.registerExtensions(['udoc'], UDocType)
-
-    this.registerView(XlsxType, leaf => new XlsxTypeView(leaf, this.settings))
-    this.registerExtensions(['xlsx', 'xls', 'xlsm'], XlsxType)
   }
 
   async loadSettings() {
     const loadedSettings = await this.loadData()
     this.settings = defu(loadedSettings, {
       language: 'EN',
-      isSupportXlsx: true,
     })
   }
 

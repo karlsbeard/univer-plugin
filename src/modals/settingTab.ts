@@ -33,16 +33,5 @@ export class SettingTab extends PluginSettingTab {
             await this.plugin.saveSettings()
           })
       })
-    new Setting(containerEl)
-      .setName('support xlsx file type')
-      .setDesc('choose whether to support xlsx file type and its import and export')
-      .addToggle((toggle) => {
-        toggle
-          .setValue(this.plugin.settings.isSupportXlsx)
-          .onChange(async (value: boolean) => {
-            this.plugin.settings.isSupportXlsx = value
-            await this.plugin.saveSettings()
-          })
-      })
   }
 }
